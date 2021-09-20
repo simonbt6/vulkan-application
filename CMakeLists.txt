@@ -19,17 +19,26 @@ set(VULKAN_LIB_LIST
     "vulkan-1.lib"
 )
 
-add_executable(VulkanGameEngine main.cpp)
+link_directories(${VULKAN_LIB})
+link_directories(${GLFW_LIB})
+
+link_libraries(${VULKAN_LIB}/${VULKAN_LIB_LIST})
+link_libraries(${GLFW_LIB}/glfw3.lib)
+
+set (SOURCES
+    "src/core/graphics/window.cpp"
+    "src/core/utils/queuefamily.cpp"
+    "src/core/utils/swapchain.cpp"
+)
+
+add_executable(VulkanGameEngine main.cpp ${SOURCES})
 
 # Includes
 include_directories(${VULKAN_INCLUDE})
 include_directories(${GLFW_INCLUDE})
 
-link_directories(${VULKAN_LIB})
-link_directories(${GLFW_LIB})
 
-target_link_libraries(VulkanGameEngine ${VULKAN_LIB}/${VULKAN_LIB_LIST})
-target_link_libraries(VulkanGameEngine ${GLFW_LIB}/glfw3.lib)
+set_property(TARGET VulkanGameEngine PROPERTY CXX_STANDARD 17)
 
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

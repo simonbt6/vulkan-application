@@ -1,23 +1,20 @@
 #include <iostream>
+#include "src/core/graphics/window.hpp"
+
+// #include "VulkanApplication.hpp"
 
 
-#include "VulkanApplication.hpp"
-
-class TestApplication : public Application
-{
-        
-};
 
 int main(int, char**) {
-    TestApplication app;
-
-    try {
-        app.run();
-    }
-    catch (const std::exception& e) 
+    try
     {
-        std::cerr << e.what() << std::endl;
-        return EXIT_FAILURE;
+        VulkanGameEngine::Graphics::Window window;
     }
-    return EXIT_SUCCESS;
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+    
+
 }
